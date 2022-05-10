@@ -12,28 +12,46 @@ BUILD_DATE = "2022-05-06"
 WEBSITE = "https://randomds.com"
 REPO = "https://github.com/paluigi/csv2latex_gui"
 
+sg.set_options(font="Default 16")
+
 
 # Function definition
 def make_main_window():
     layout = [
         [sg.Text("CSV File to Latex table")],
         [
-            sg.Text("Version: {}".format(VERSION)),
-            sg.Text("Date: {}".format(BUILD_DATE)),
+            sg.Text("Version: {}".format(VERSION), font="_ 12"),
+            sg.Text("Date: {}".format(BUILD_DATE), font="_ 12"),
         ],
         [sg.Button("Select CSV", key="-SELECT-")],
-        [sg.Text(size=(40, 3), key="-FILENAME-")],
+        [
+            sg.Text(
+                "Please select a CSV file", size=(40, 3), key="-FILENAME-", font="_ 12"
+            )
+        ],
         [
             sg.Button("Create table", key="-POPUP-"),
             sg.Button("Copy Table to clipboard", key="-CLIP-"),
         ],
         [
             sg.Frame(
-                "Info",
-                [[
-                    sg.Button("RandomDataScience Website", key="-RDS-"),
-                    sg.Button("GitHub Repo", key="-GIT-"),
-                ]],
+                "Info links",
+                [
+                    [
+                        sg.Text(
+                            "RandomDataScience Website",
+                            key="-RDS-",
+                            enable_events=True,
+                            font="_ 16 underline",
+                        ),
+                        sg.Text(
+                            "GitHub Repo",
+                            key="-GIT-",
+                            enable_events=True,
+                            font="_ 16 underline",
+                        ),
+                    ]
+                ],
             )
         ],
         [
