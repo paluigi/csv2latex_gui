@@ -1,7 +1,9 @@
-name: Pack Flet App
+name: Release Build
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - "*"
 
 env:
   UV_PYTHON: 3.11   # Python version
