@@ -38,7 +38,7 @@ jobs:
           - name: windows
             runner: windows-latest
             build_cmd: "flet pack main.py --distpath windows --name csv2latex"
-            artifact_path: windows/csv2latex
+            artifact_path: windows/csv2latex.exe
             needs_linux_deps: false
 
     steps:
