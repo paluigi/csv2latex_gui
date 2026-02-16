@@ -112,7 +112,7 @@ jobs:
           TAG_NAME="${GITHUB_REF#refs/tags/}"
           mv artifacts/linux-build-artifact "artifacts/csv2latex-linux-${TAG_NAME}"
           mv artifacts/macos-build-artifact "artifacts/csv2latex-macos-${TAG_NAME}"
-          mv artifacts/windows-build-artifact.exe "artifacts/csv2latex-windows-${TAG_NAME}.exe"
+          mv artifacts/windows-build-artifact "artifacts/csv2latex-windows-${TAG_NAME}"
           ls -la artifacts/
 
       - name: Create GitHub Release
