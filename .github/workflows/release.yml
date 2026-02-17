@@ -110,14 +110,10 @@ jobs:
       - name: Rename artifacts with version tag
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
-          mv artifacts/linux-build-artifact "artifacts/csv2latex-linux-${TAG_NAME}"
-          mv artifacts/macos-build-artifact "artifacts/csv2latex-macos-${TAG_NAME}"
-          mv artifacts/windows-build-artifact "artifacts/csv2latex-windows-${TAG_NAME}"
+          mv artifacts/linux-build-artifact/csv2latex "artifacts/csv2latex-linux-${TAG_NAME}"
+          mv artifacts/macos-build-artifact/csv2latex "artifacts/csv2latex-macos-${TAG_NAME}"
+          mv artifacts/windows-build-artifact/csv2latex.exe "artifacts/csv2latex-windows-${TAG_NAME}.exe"
           ls -la artifacts/
-      - name: Verify Linux artifact
-        run: |
-          TAG_NAME="${GITHUB_REF#refs/tags/}"
-          ls -la artifacts/csv2latex-linux-${TAG_NAME}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
