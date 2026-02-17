@@ -1,9 +1,7 @@
-name: Release Build
+name: Test Release Build
 
 on:
-  push:
-    tags:
-      - "*"
+  workflow_dispatch:
 
 env:
   UV_PYTHON: 3.11   # Python version
@@ -106,7 +104,14 @@ jobs:
         with:
           path: artifacts
           merge-multiple: false
-
+      - name: Check artifacts
+        run: |
+          ls -la artifacts/
+      - name: Check artifacts if folders
+        run: |
+          ls -la artifacts/linux-build-artifact
+          ls -la artifacts/macos-build-artifact
+          ls -la artifacts/windows-build-artifact
       - name: Rename artifacts with version tag
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
@@ -118,13 +123,3 @@ jobs:
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
           ls -la artifacts/csv2latex-linux-${TAG_NAME}
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: "Release ${{ github.ref_name }}"
-          files: |
-            artifacts/csv2latex-*
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
